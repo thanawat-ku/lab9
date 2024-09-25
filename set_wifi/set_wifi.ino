@@ -35,7 +35,7 @@ void setup() {
   wm.setConfigPortalTimeout(60); // auto close configportal after n seconds
 
   bool res;
-  res = wm.autoConnect("AutoConnectAP","password"); // password protected ap
+  res = wm.autoConnect("AutoConnectAP1111","password"); // password protected ap
 
   if(!res) {
     Serial.println("Failed to connect or hit timeout");
@@ -67,7 +67,7 @@ void checkButton(){
       Serial.println("Starting config portal");
       wm.setConfigPortalTimeout(120);
       
-      if (!wm.startConfigPortal("OnDemandAP","password")) {
+      if (!wm.startConfigPortal("OnDemandAP1111","password")) {
         Serial.println("failed to connect or hit timeout");
         delay(3000);
         ESP.restart();
