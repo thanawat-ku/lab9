@@ -16,7 +16,7 @@ bool wm_nonblocking = false; // change to true to use non blocking
 WiFiManager wm; // global wm instance
 WiFiManagerParameter custom_field; // global param ( for non blocking w params )
 
-String ApiHost = "http://192.168.1.1";
+String ApiHost = "http://158.108.112.143/fook/api";
 
 void setup() {
   WiFi.mode(WIFI_STA); // explicitly set mode, esp defaults to STA+AP  
@@ -102,7 +102,7 @@ void processResponse(int httpCode, HTTPClient& http)
 void createStudent(String studentCode, String studentName, String gender)
 {
 	HTTPClient http;
-	http.begin(ApiHost + "/student");
+	http.begin(ApiHost + "/student.php");
 	http.addHeader("Content-Type", "application/json");
 	
 	String message = "";
@@ -118,13 +118,13 @@ void createStudent(String studentCode, String studentName, String gender)
 void getStudent(String studentCode)
 {
 	HTTPClient http;
-	http.begin(ApiHost + "/student?student_code=" + studentCode);
+	http.begin(ApiHost + "/student.php?student_code=" + studentCode);
 	int httpCode = http.GET();
 	processResponse(httpCode, http);
 }
 void updateStudent(String studentCode, String studentName, String gender){
     HTTPClient http;
-	http.begin(ApiHost + "/student");
+	http.begin(ApiHost + "/student.php");
 	http.addHeader("Content-Type", "application/json");
 	
 	String message = "";
@@ -140,7 +140,7 @@ void updateStudent(String studentCode, String studentName, String gender){
 void deleteStudent(String studentCode)
 {
 	HTTPClient http;
-	http.begin(ApiHost + "/student?student_code=" + studentCode);
+	http.begin(ApiHost + "/student.php?student_code=" + studentCode);
 	int httpCode = http.sendRequest("DELETE");
 	processResponse(httpCode, http);
 }
